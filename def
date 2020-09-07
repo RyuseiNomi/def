@@ -1,7 +1,16 @@
 #!/usr/bin/env bash
 
 function docker-exec-fzf() {
-    echo "hello"
+    if [ "$1" == "exec" ]; then
+        docker exec -it "$(docker ps | awk '{print $NF}' | fzf --height 40% --reverse --border)" bash
+    elif [ "$1" == "stop" ]; then
+        docker stop "$(docker ps | awk '{print $NF}' | fzf --height 40% --reverse --border)"
+    elif [ "$1" == "list" ]; then
+        docker ps | awk '{print $1, $NF}'
+    else
+        # TODO helpの表示
+        echo "引数を入力してください"
+    fi
 }
 
-docker-exec-fzf
+docker-exec-fzf $1
