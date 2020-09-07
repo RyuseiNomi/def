@@ -10,9 +10,20 @@ function docker-exec-fzf() {
     elif [ "$1" == "list" ]; then
         docker ps | awk '{print $1, $NF}'
     else
-        #TODO helpの表示
-        echo "引数を入力してください"
+        show-usage
     fi
+}
+
+function show-usage() {
+    cat <<EOF
+Usage: def [options]
+
+Options:
+  exec     Choose container to exec
+  stop     Choose container to stop
+  status   Show a list of container and status
+  list     Show a list of container running
+EOF
 }
 
 docker-exec-fzf $1
