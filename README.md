@@ -32,3 +32,6 @@ Options:
   list     Show a list of container running
 ```
 
+## Demo
+
+![](./assets/def-demo.gif)
