@@ -5,10 +5,12 @@ function docker-exec-fzf() {
         docker exec -it "$(docker ps | awk '{print $NF}' | fzf --height 40% --reverse --border)" bash
     elif [ "$1" == "stop" ]; then
         docker stop "$(docker ps | awk '{print $NF}' | fzf --height 40% --reverse --border)"
+    elif [ "$1" == "status" ]; then
+        docker ps -a --format "{{.ID}} {{.Names}} {{.Status}}"
     elif [ "$1" == "list" ]; then
         docker ps | awk '{print $1, $NF}'
     else
-        # TODO helpの表示
+        #TODO helpの表示
         echo "引数を入力してください"
     fi
 }
