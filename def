@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+function docker-exec-fzf() {
+    echo "hello"
+}
+
+docker-exec-fzf
